@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Feed
+{% endblock %}
+
+
+{% block body %}
+
+
+{% if portfolios|length > 0 %}
+    <div class="container-sm list-group">
+        {% for portfolio in portfolios %}
+            <a class="list-group-item list-group-item-action" href={{portfolio.get_absolute_url}}>
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{portfolio.name}}</h5>
+              <small>{{portfolio.created}}</small>
+            </div>
+            <p class="mb-1">Some placeholder content in a paragraph.</p>
+            <small>And some small print.</small>
+            </a>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+
+{% endblock %}
