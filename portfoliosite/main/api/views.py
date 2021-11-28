@@ -3,7 +3,7 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView
 from rest_framework.authentication import BasicAuthentication
-from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, AllowAny
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, AllowAny, IsAdminUser
 from django.db.models import Q
 
 from ..models import Portfolio, Image, Comment
@@ -93,10 +93,17 @@ class CommentAPIViewSet(viewsets.ModelViewSet):
     """
 
     authentication_classes = (BasicAuthentication,)
-    permission_classes = (AllowAny,)
+    # permission_classes = (AllowAny,)
 
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+
+    def get_permissions(self):
+        if self.action == 'create' or self.action == 'list' or self.action == 'retrieve':
+            permission_classes = (AllowAny,)
+        else:
+            permission_classes = (IsAdminUser,)
+        return [permission() for permission in permission_classes]
 
 
 class SearchAPIView(ListAPIView):
