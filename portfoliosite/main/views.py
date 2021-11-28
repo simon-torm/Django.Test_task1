@@ -6,7 +6,7 @@ def feed(request):
     portfolios = Portfolio.objects.all()
     return render(request, 'main/feed.html', {'portfolios': portfolios})
 
+
 def portfolio_detail(request, id):
     portfolio = get_object_or_404(Portfolio, id=id)
-    # return portfolio
     return render(request, 'main/detail.html', {'portfolio': portfolio})

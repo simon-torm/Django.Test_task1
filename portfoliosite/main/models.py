@@ -4,17 +4,12 @@ from django.contrib.auth.models import User
 
 
 class Portfolio(models.Model):
-    #!!!
-    # Видали якщо не знаєш!!
-    # STATUS_CHOICES = (
-    #     ('draft', 'Draft'),
-    #     ('published', 'Published'),
-    # )
     name = models.CharField(max_length=128)
     description = models.TextField()
     author = models.ForeignKey(User,
                                on_delete=models.CASCADE,
-                               related_name='portfolios')
+                               related_name='portfolios',
+                               blank=False)
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -30,9 +25,10 @@ class Portfolio(models.Model):
 class Image(models.Model):
     portfolio = models.ForeignKey(Portfolio,
                                   on_delete=models.CASCADE,
-                                  related_name='images')
-    name = models.CharField(max_length=64)
-    description = models.TextField()
+                                  related_name='images',
+                                  blank=False)
+    name = models.CharField(max_length=64, blank=False)
+    description = models.TextField(blank=True)
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -47,12 +43,13 @@ class Image(models.Model):
 class Comment(models.Model):
     image = models.ForeignKey(Image,
                               on_delete=models.CASCADE,
-                              related_name='comments')
-    name = models.CharField(max_length=64)
-    body = models.TextField()
+                              related_name='comments',
+                              blank=False)
+    name = models.CharField(max_length=64, blank=False)
+    body = models.TextField(blank=False)
 
     created = models.DateTimeField(auto_now_add=True)
-    active = models.BooleanField(default=True) # for manual deactivation by the administrator
+    active = models.BooleanField(default=True)  # for manual deactivation by the administrator
 
     def __str__(self):
         return "[{self.id}]Comment: from {self.name} on [{self.image.id}]{self.image}"
