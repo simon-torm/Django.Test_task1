@@ -18,10 +18,10 @@ class CommentSerializer(serializers.ModelSerializer):
 
 class ImageSerializer(serializers.ModelSerializer):
     comments = CommentSerializer(many=True, read_only=True)
-    portfolio = None
+
     class Meta:
         model = Image
-        fields = ('id', 'portfolio', 'name', 'description', 'created', 'updated', 'comments')
+        fields = ('id', 'portfolio', 'name', 'description', 'image', 'created', 'updated', 'comments')
 
 
 class PortfolioSerializer(serializers.ModelSerializer):

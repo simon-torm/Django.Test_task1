@@ -13,16 +13,5 @@ router.register('comments',
                 views.CommentAPIViewSet,
                 basename='comment')
 urlpatterns = router.urls
+urlpatterns += [path('search/', views.SearchAPIView.as_view(), name='SearchAPIView')]
 
-
-# urlpatterns = [
-#     path('api/portfolios/',
-#          views.PortfolioListView.as_view(),
-#          name='portfolio_list'),
-#     path('api/portfolio/<int:pk>',
-#          views.PortfolioDetailView.as_view(),
-#          name='portfolio_detail'),
-#     path('api/portfolio/create',
-#          views.PortfolioCreateView.as_view(),
-#          name='portfolio_detail')
-# ]

@@ -29,6 +29,7 @@ class Image(models.Model):
                                   blank=False)
     name = models.CharField(max_length=64, blank=False)
     description = models.TextField(blank=True)
+    image = models.ImageField(verbose_name='/images/', blank=True)
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

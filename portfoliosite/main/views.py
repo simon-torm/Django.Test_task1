@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from .models import Portfolio
 
 
+# These views are not finished.
+
 def feed(request):
     portfolios = Portfolio.objects.all()
     return render(request, 'main/feed.html', {'portfolios': portfolios})
