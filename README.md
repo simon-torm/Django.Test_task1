@@ -13,10 +13,10 @@ REST API for a portfolio publication site
 3) Enter **"python manage.py createsuperuser"** in the terminal and create a new admin profile..
 4) Run server **"python manage.py runserver"**
 
-**localhost:port/docs/** here you will find API documentation
+**http://localhost:port/docs/** - here you will find API documentation
 
 ## API
-* Portfolios (GET, POST, PUT, DELETE): **http://host:port/api/portfolios/**
-* Images (GET, POST, PUT, DELETE): **http://host:port/api/images/**
-* Comments (GET, POST): **http://host:port/api/comments/**
-* Search (GET): **http://host:port/api/search/**
+* Portfolios (GET, POST, PUT, DELETE) - **http://host:port/api/portfolios/**
+* Images (GET, POST, PUT, DELETE) - **http://host:port/api/images/**
+* Comments (GET, POST) - **http://host:port/api/comments/**
+* Search (GET) - **http://host:port/api/search/**
